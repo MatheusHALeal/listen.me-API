@@ -9,6 +9,6 @@ app.get('/', function (req, res) {
 
 //Launch listening server on port 8081
 app.listen(3000, function () {
-  console.log('app listening on port 8081!')
+  console.log('app listening on port 3000!')
 })
 
