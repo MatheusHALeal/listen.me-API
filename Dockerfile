@@ -1,6 +1,7 @@
 FROM node:9-slim
 WORKDIR /app
-COPY package.json /app
+COPY package.json .
 RUN npm install 
-RUN  npm install nodemon -g
-CMD ["npm", "start"]
+# RUN  npm install nodemon -g
+COPY . .
+CMD ["npm","start"]
