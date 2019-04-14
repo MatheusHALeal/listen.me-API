@@ -9,8 +9,4 @@ const userSchema = new mongoose.Schema({
 
   });
 
-userSchema.methods.getName =  () => {
-  
-}
-
 module.exports = mongoose.model('User', userSchema);
