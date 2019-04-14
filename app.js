@@ -5,12 +5,12 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/test');
-const userRoute = require('./user/userRoute')
+const userRoute = require('./src/user/userRoute')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors())
-app.use('/user' , userRoute);
+app.use('/src/user' , userRoute);
 
 app.listen(3000, function () {
   console.log('app listening on port 3000!')
