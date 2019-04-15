@@ -1,27 +1,32 @@
 
-const request = require('request');
-//import { expect, request } from 'chai';
-const userController = require('../../src/user/userController');
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let should = chai.should();
+const userController = require('./../src/user/userController');
 
 
-
+chai.use(chaiHttp);
 describe('FirstTest', function() {
 
-	let user = {name: "matheus",
+	
+
+
+
+describe('/POST user', () => {
+        it('post: user', (done) => {
+            let user = {name: "matheus",
 				login: "gatona",
 				password: "12345678",
-				user:[]};	
+			    user:[]};	
+              
+              chai.request('http://localhost:3000')
+              .post('/src/user')
+              .send(user) // vamos enviar esse arquivo
+              .end((err, res) => {
+                  res.should.have.status(200);
+                done();
+              });
+        });
 
-
-
-
-
-  describe('new user test test ', function() {
-    it('should return 201 and the user resource', async () => {
-      const response = await request(userController).post(user);
-    	
-      //expect(response).to.have.status(201);
-
-    });
     });
   });
