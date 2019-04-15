@@ -3,7 +3,7 @@ const User = require('./user')
 exports.getAll = (req, res, next) => {
     User.find(function (err, user) {
         if (err) return console.error(err);
-        res.status(200).send(kittens);
+        res.status(200).send(user);
     })
 };
 

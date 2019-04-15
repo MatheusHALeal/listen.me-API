@@ -10,7 +10,7 @@ const userRoute = require('./src/user/userRoute')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors())
-app.use('/src/user' , userRoute);
+app.use('/user', userRoute);
 
 app.listen(3000, function () {
   console.log('app listening on port 3000!')
