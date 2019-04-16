@@ -20,7 +20,7 @@ describe('/POST user', () => {
 			    user:[]};	
               
               chai.request('http://localhost:3000')
-              .post('/src/user')
+              .post('/src/user/userController')
               .send(user) // vamos enviar esse arquivo
               .end((err, res) => {
                   res.should.have.status(200);
