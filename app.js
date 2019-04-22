@@ -7,9 +7,9 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 const userRoute = require('./src/user/userRoute')
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors())
 app.use('/user', userRoute);
 
 app.listen(3000, function () {

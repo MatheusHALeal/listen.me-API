@@ -25,10 +25,9 @@ exports.post = (req, res, next) => {
 
 exports.put = function (req, res, next) {
     User.findById(req.params.id, (err, user) => {
-        user.name = req.body.name;
-        user.login = req.body.login;
-        user.user = req.body.user;
-        user.password = req.params.password;
+        user.email = req.body.email;
+        user.username = req.body.username;
+        user.password = req.body.password;
         user.save((err, newUser) => {
             res.status(201).send(newUser);
         })
