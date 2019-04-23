@@ -9,6 +9,7 @@ router.post('/register', (req, res, next) => {
     newUser.save(function (err, newUser) {
       if (err) return console.error(err);
     });
+    
 
     jwt.sign({newUser}, 'secretKey', { expiresIn: '1000s'},  (err, token) =>{
         res.json({ token })
