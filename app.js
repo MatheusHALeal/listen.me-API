@@ -1,13 +1,20 @@
-
 const express = require('express')
-var app = express()
+const app = express()
+const cors = require('cors')
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+mongoose.connect('mongodb://localhost/test');
+const userRoute = require('./src/user/userRoute')
 
-//Launch listening server on port 8081
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use('/user', userRoute);
+
 app.listen(3000, function () {
   console.log('app listening on port 3000!')
 })
+
+module.exports = app;
 
