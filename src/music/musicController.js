@@ -25,8 +25,7 @@ exports.post = (req, res, next) => {
 
 exports.put = function (req, res, next) {
     Music.findById(req.params.id, (err, user) => {
-        music.id = req.body.id;
-        music.musicName = req.body.musicName;
+        music.name = req.body.name;
         music.artist = req.body.artist;
         music.save((err, newMusic) => {
             res.status(201).send(newMusic);
