@@ -18,8 +18,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   img: {
-    data: Buffer,
-    contentType: String
+    type: String
   },
   rate: Number,
   user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
