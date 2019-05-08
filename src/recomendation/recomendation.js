@@ -7,7 +7,7 @@ const recomendationSchema = new mongoose.Schema({
     idSource: Number,
     idTarget: Number,
     type: String,
-    music: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Music' }]    
+    music: { type: mongoose.Schema.Types.ObjectId, ref: 'Music' }
 
   });
 
