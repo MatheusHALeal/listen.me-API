@@ -2,12 +2,12 @@
 const mongoose = require('mongoose');
 
 const recomendationSchema = new mongoose.Schema({
-    rating: String,
+    rating: Number,
     comment: String,
-    idSource: Number,
-    idTarget: Number,
+    idSource: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    idTarget: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     type: String,
-    music: { type: mongoose.Schema.Types.ObjectId, ref: 'Music' }
+   // music: { type: mongoose.Schema.Types.ObjectId, ref: 'Music' }
 
   });
 

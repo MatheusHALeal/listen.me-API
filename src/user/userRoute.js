@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const controller = require('./userController')
 
-router.get('/:id', controller.get);
-router.get('/', controller.getAll);
-router.post('/', controller.post);
-router.put('/:id', controller.put);
+router.get('/:id', controller.show);
+router.get('/', controller.index);
+router.post('/', controller.create);
+router.put('/:id', controller.update);
+router.put("/:id/follow/:f_id", controller.follow);
+router.put("/:id/unfollow/:f_id", controller.unfollow);
 
 module.exports = router;

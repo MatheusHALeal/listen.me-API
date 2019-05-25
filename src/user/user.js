@@ -21,7 +21,9 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   rate: Number,
-  user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  _following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  _followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  _recomendations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recomendation' }]
 
 });
 
