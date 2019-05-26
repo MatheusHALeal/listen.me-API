@@ -1,9 +1,4 @@
 var User = require("../user/user.js");
-//var recommendation = require("../recommendation/recommendation.js");
-
-/*
- *    FINDS
- */
 
 exports.findUsers = () => {
   let users = User.find({}).exec();
@@ -12,27 +7,22 @@ exports.findUsers = () => {
 
 exports.findUserById = userId => {
   let user = User.findById(userId)
-    //    .populate("_recommendation")
+    .populate("_recommendations")
     .populate("_followers")
     .populate("_following")
     .exec();
-
   return user;
 };
 
 exports.findUserByProfileName = profileName => {
   let user = User.find({ profile_name: profileName })
-    //  .populate("_recommendation")
+    .populate("_recommendations")
     .populate("_followers")
     .populate("_following")
     .exec();
 
   return user;
 };
-
-/*
- *    CREATES/UPDATES
- */
 
 exports.createUser = async body => {
   let user = new User(body);
