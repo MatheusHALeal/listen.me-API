@@ -1,5 +1,7 @@
 const Recommendation = require("../recommendation/recommendation.js");
 
+exports.findRecommendations = id =>  Recommendation.findById(id)
+
 exports.findMyRecommendations = myId =>
   Recommendations.find({ "idSource": myId }).exec();
 

@@ -1,4 +1,4 @@
-const recommendationController = require("../recommendation/recomendationController.js");
+const recommendationController = require("../recommendation/recommendationController.js");
 const userRepository = require("../storage/user.repository");
 
 // exports.getAll = (req, res, next) => {
@@ -113,11 +113,14 @@ exports.unfollow = (req, res) => {
  * and update the user target recommendations.
  */
 exports.recommend = (req, res) => {
-  recommendationController.create(req, res).then(recommedation => {
-    userRepository
-      .recommend(recommedation.idSource, recommedation.id)
-      .then(() => {
-        userRepository.recommend(recommedation.idTarget, recommedation.id)
-      });
-  });
-};
+  recommendationController
+    .create(req, res)
+    .then(created =>
+      userRepository
+        .recommend(req.body.idSource, created)
+        .then(() => 
+        userRepository.recommend(req.body.idTarget, created)).then( () =>{
+          res.status(200).json({ result: created, msg: "Recommended" });
+        })
+    );
+}

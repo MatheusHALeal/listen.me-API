@@ -1,4 +1,4 @@
-const recommedationRepository = require("../storage/recommedation.repository");
+const recommedationRepository = require("../storage/recommendation.repository");
 
 exports.getAll = (req, res, next) => {
   recommedationRepository
@@ -7,21 +7,26 @@ exports.getAll = (req, res, next) => {
     .then(result => res.status(200).json({ recommendations: result }));
 };
 
+exports.get = id => {
+  recommedationRepository
+    .findRecommendations(id)
+    .catch(err => res.status(400).send(err))
+    .then(result => res.status(200).json({ recommendations: result }));
+};
+
 exports.getAllFriend = (req, res, next) => {
   recommedationRepository
-    .findMyRecommendations(req.params.targetId)
+    .findFriendRecommendations(req.params.targetId)
     .catch(err => res.status(400).send(err))
     .then(result => res.status(200).json({ recommendations: result }));
 };
 
 exports.create = (req, res, next) => {
-  recommedationRepository
+  return recommedationRepository
     .createRecommendation(req.body)
-    .then(createdRecommedation =>
-      res
-        .status(200)
-        .json({ result: createdRecommedation, msg: "Recommedation created." })
-    )
+    .then(createdRecommedation => {
+      return createdRecommedation._id;
+    })
     .catch(err => {
       if (err && err.name === "MongoError" && err.code === 11000) {
         res.status(403).json("There is already one entity with same values!");

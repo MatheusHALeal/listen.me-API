@@ -1,5 +1,5 @@
 var User = require("../user/user.js");
-//var Recomendation = require("../recomendation/recomendation.js");
+//var recommendation = require("../recommendation/recommendation.js");
 
 /*
  *    FINDS
@@ -12,7 +12,7 @@ exports.findUsers = () => {
 
 exports.findUserById = userId => {
   let user = User.findById(userId)
-    //    .populate("_recomendation")
+    //    .populate("_recommendation")
     .populate("_followers")
     .populate("_following")
     .exec();
@@ -22,7 +22,7 @@ exports.findUserById = userId => {
 
 exports.findUserByProfileName = profileName => {
   let user = User.find({ profile_name: profileName })
-    //  .populate("_recomendation")
+    //  .populate("_recommendation")
     .populate("_followers")
     .populate("_following")
     .exec();
@@ -71,8 +71,8 @@ exports.unfollow = (userId, newUserId) => {
   ).exec();
 };
 
-exports.recommend = (idUser, idRecommedation) =>
+exports.recommend = (idUser, idRecommendation) =>
   User.findOneAndUpdate(
     { _id: idUser },
-    { $addToSet: { _recommedations: idRecommedation } }
+    { $addToSet: { _recommendations: idRecommendation } }
   ).exec();
