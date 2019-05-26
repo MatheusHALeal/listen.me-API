@@ -16,7 +16,6 @@ exports.show = (req, res) => {
   userRepository
     .findUserById(req.params.id)
     .then(user => {
-      console.log(user._recommendations[0].idSource)
       res.status(200).json(user);
     })
     .catch(error => {
