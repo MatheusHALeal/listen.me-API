@@ -12,7 +12,7 @@ exports.findUsers = () => {
 
 exports.findUserById = userId => {
   let user = User.findById(userId)
-//    .populate("_recomendation")
+    //    .populate("_recomendation")
     .populate("_followers")
     .populate("_following")
     .exec();
@@ -21,14 +21,14 @@ exports.findUserById = userId => {
 };
 
 exports.findUserByProfileName = profileName => {
-  let user = User.find({ "profile_name": profileName })
-//  .populate("_recomendation")
-  .populate("_followers")
-  .populate("_following")
+  let user = User.find({ profile_name: profileName })
+    //  .populate("_recomendation")
+    .populate("_followers")
+    .populate("_following")
     .exec();
 
   return user;
-}
+};
 
 /*
  *    CREATES/UPDATES
@@ -70,3 +70,9 @@ exports.unfollow = (userId, newUserId) => {
     { $pull: { _following: newUserId } }
   ).exec();
 };
+
+exports.recommend = (idUser, idRecommedation) =>
+  User.findOneAndUpdate(
+    { _id: idUser },
+    { $addToSet: { _recommedations: idRecommedation } }
+  ).exec();
