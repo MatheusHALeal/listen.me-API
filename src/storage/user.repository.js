@@ -66,3 +66,12 @@ exports.recommend = (idUser, idRecommendation) =>
     { _id: idUser },
     { $addToSet: { _recommendations: idRecommendation } }
   ).exec();
+
+exports.findUserByEmail = userEmail => {
+  let user = User.find({ email: userEmail})
+    .populate("_recommendations")
+    .populate("_followers")
+    .populate("_following")
+    .exec();
+  return user;
+};
