@@ -76,14 +76,23 @@ exports.unfollow = (req, res) => {
  * and update the user target recommendations.
  */
 exports.recommend = (req, res) => {
-  recommendationController
-    .create(req, res)
-    .then(created =>
-      userRepository
-        .recommend(req.body.idSource, created)
-        .then(() => 
-        userRepository.recommend(req.body.idTarget, created)).then( () =>{
-          res.status(200).json({ result: created, msg: "Recommended" });
-        })
-    );
-}
+  recommendationController.create(req, res).then(created =>
+    userRepository
+      .recommend(req.body.idSource, created)
+      .then(() => userRepository.recommend(req.body.idTarget, created))
+      .then(() => {
+        res.status(200).json({ result: created, msg: "Recommended" });
+      })
+  );
+};
+
+exports.getByEmail = (req, res) => {
+  userRepository
+    .findUserByEmail(req.params.email)
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(error => {
+      res.status(400).json(error);
+    });
+};
