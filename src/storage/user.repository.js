@@ -14,8 +14,8 @@ exports.findUserById = userId => {
   return user;
 };
 
-exports.findUserByProfileName = profileName => {
-  let user = User.find({ profile_name: profileName })
+exports.findUserByUsername = name => {
+  let user = User.find({ username: name })
     .populate("_recommendations")
     .populate("_followers")
     .populate("_following")
