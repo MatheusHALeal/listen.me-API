@@ -68,7 +68,7 @@ exports.recommend = (idUser, idRecommendation) =>
   ).exec();
 
 exports.findUserByEmail = userEmail => {
-  let user = User.findById(userEmail)
+  let user = User.find({ email: userEmail})
     .populate("_recommendations")
     .populate("_followers")
     .populate("_following")
