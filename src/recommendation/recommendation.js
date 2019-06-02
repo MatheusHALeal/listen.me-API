@@ -6,6 +6,7 @@ const recommendationSchema = new mongoose.Schema({
     comment: String,
     idSource: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     idTarget: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    type:  String,
    // music: { type: mongoose.Schema.Types.ObjectId, ref: 'Music' }
 
   });
