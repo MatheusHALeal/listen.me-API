@@ -9,6 +9,7 @@ const recommendationSchema = new mongoose.Schema({
     type:  String,
     embedUrl: String,
     title: String,
+    date: Date,
    // music: { type: mongoose.Schema.Types.ObjectId, ref: 'Music' }
 
   });
