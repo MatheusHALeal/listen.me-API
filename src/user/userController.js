@@ -1,5 +1,5 @@
-const recommendationController = require("../recommendation/recommendationController.js");
-const userRepository = require("../storage/user.repository");
+const recommendationController = require('../recommendation/recommendationController.js');
+const userRepository = require('../storage/user.repository');
 
 exports.index = (req, res) => {
   userRepository
@@ -27,11 +27,11 @@ exports.create = (req, res) => {
   userRepository
     .createUser(req.body)
     .then(createdUser => {
-      res.status(200).json({ result: createdUser, msg: "User created." });
+      res.status(200).json({ result: createdUser, msg: 'User created.' });
     })
     .catch(err => {
-      if (err && err.name === "MongoError" && err.code === 11000) {
-        res.status(403).json("There is already one entity with same values!");
+      if (err && err.name === 'MongoError' && err.code === 11000) {
+        res.status(403).json('There is already one entity with same values!');
       } else {
         res.status(400).json(err);
       }
@@ -42,7 +42,7 @@ exports.update = (req, res) => {
   userRepository
     .updateUser(req.params.id, req.body)
     .then(updatedUser => {
-      res.status(200).json({ result: updatedUser, msg: "User updated." });
+      res.status(200).json({ result: updatedUser, msg: 'User updated.' });
     })
     .catch(error => {
       res.status(400).json(error);
@@ -53,7 +53,7 @@ exports.follow = (req, res) => {
   userRepository
     .follow(req.params.id, req.params.f_id)
     .then(updatedUser => {
-      res.status(200).json({ result: updatedUser, msg: "Following" });
+      res.status(200).json({ result: updatedUser, msg: 'Following' });
     })
     .catch(error => {
       res.status(400).json(error);
@@ -64,7 +64,7 @@ exports.unfollow = (req, res) => {
   userRepository
     .unfollow(req.params.id, req.params.f_id)
     .then(updatedUser => {
-      res.status(200).json({ result: updatedUser, msg: "Unfollowed" });
+      res.status(200).json({ result: updatedUser, msg: 'Unfollowed' });
     })
     .catch(error => {
       res.status(400).json(error);
@@ -81,7 +81,7 @@ exports.recommend = (req, res) => {
       .recommend(req.body.idSource, created)
       .then(() => userRepository.recommend(req.body.idTarget, created))
       .then(() => {
-        res.status(200).json({ result: created, msg: "Recommended" });
+        res.status(200).json({ result: created, msg: 'Recommended' });
       })
   );
 };
